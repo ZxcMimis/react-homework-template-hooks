@@ -1,0 +1,17 @@
+.info-list {
+    display: flex;
+gap: 40px;
+border: solid rgba(0, 0, 0, 0.33);
+border-radius: 30px;
+padding: 40px;
+width: 700px;
+margin-left: auto;
+margin-right: auto;
+justify-content: center;
+}
+.info-item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
