@@ -11,7 +11,7 @@ export class TodoList extends Component {
                     return <li className="tasks-item" key={task.id} id={task.id}>
                         <input onChange={() => this.props.changeComplated(task.id)} type="checkbox" checked={task.completed} />
                         <p className={task.completed ? 'completed' : ''}>{task.text}</p>
-                        <button onClick={(e) => this.props.deleteFunk(e.target.parentElement.id)}>delete task</button>
+                        <button className="btn" onClick={(e) => this.props.deleteFunk(e.target.parentElement.id)}>𝖉𝖊𝖑𝖊𝖙𝖊 𝖙𝖆𝖘𝖐</button>
                     </li>
                 })}
             </ul>

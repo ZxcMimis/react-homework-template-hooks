@@ -1,0 +1,22 @@
+.box-filter {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(248, 162, 205, 0.5);
+    border-radius: 30px;
+    margin: 25px auto;
+    width: 350px;
+    padding: 20px;
+
+}
+
+.text-filter {
+    font-size: 25px;
+}
+
+.input-filter {
+    max-width: 250px;
+    border-radius: 10px 10px 10px 10px;
+    border: 2px solid rgb(243, 7, 125);
+    margin-left: auto;
+    margin-right: auto;
+}

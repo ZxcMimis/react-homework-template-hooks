@@ -18,13 +18,13 @@ export class TodoEditor extends Component {
     render() {
         return (
             <form className="form" onSubmit={this.submit}>
-                <h2>Додати нову таску</h2>
-                <input
+                <h2>𝕯𝖔𝖉𝖆𝖙𝖎 𝖓𝖔𝖛𝖚 𝖙𝖆𝖘𝖐𝖚</h2>
+                <input className="todo-input"
                     type="text"
                     value={this.state.textValue}
                     onChange={this.textValueChange}
                 />
-                <button type="submit">add task</button>
+                <button className="todo-btn" type="submit">𝖆𝖉𝖉 𝖙𝖆𝖘𝖐</button>
             </form>
         );
     }
