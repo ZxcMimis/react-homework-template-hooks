@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from "react";
 import './App.css';
 
 import toDoData from './todo.json'
@@ -7,11 +7,14 @@ import { TodoEditor } from './components/TodoEditor/TodoEditor';
 import { Info } from './components/Info/Info';
 import { Filter } from './components/Filter/Filter';
 
-class App extends Component {
-  state = {
-    todos: toDoData,
-    filter: '',
-  }
+const App = ( ) => {
+  // state = {
+  //   todos: toDoData,
+  //   filter: '',
+  // }
+
+  const [todos, useTodos] = useState([])
+  const [filter, useFilter] = useState("")
 
   changeCompleted = (changedElId) => {
     
@@ -58,8 +61,7 @@ class App extends Component {
     );
   }
 
-  render() {
-      const filteredTasks = this.filteredTasks();
+  const filteredTasks = this.filteredTasks();
 
     return (
       <div className="App">
@@ -69,7 +71,6 @@ class App extends Component {
         <TodoList tasks={filteredTasks} changeComplated={this.changeCompleted} deleteFunk={this.deleteTask} addToStorage={this.addToStorage} />
       </div>
     );
-  }
 }
 
 export default App;
