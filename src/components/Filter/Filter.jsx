@@ -1,29 +1,44 @@
-import { Component } from "react";
-import './filter.scss'
+import { useState } from "react";
+import './filter.scss';
 
 
-export class Filter extends Component {
-    state = {
-        filter: ''
-    }
+export function Filter({ filteredTask }) {
+    const [filter, setFilter] = useState("");
 
-    filterTasks = () => {
-        this.props.filteredTask(this.state.filter)
-    }
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setFilter(value);
+        filteredTask(value);
+    };
 
-    render() {
-        return (
-            <div className="box-filter">
-                <p className="text-filter">𝕱і𝖑𝖙𝖗-𝖕𝖔-і𝖒𝖊𝖓і</p>
-                <input 
-                className="input-filter" 
-                    type="text" 
-                    onChange={(e) => this.setState(
-                        { filter: e.target.value }, 
-                        () => this.filterTasks()
-                    )} 
-                />
-            </div>
-        )
-    }
+
+    return (
+        <div className="box-filter">
+            <p className="text-filter">𝕱і𝖑𝖙𝖗-𝖕𝖔-і𝖒𝖊𝖓і</p>
+            <input
+                className="input-filter"
+                type="text"
+                value={filter}
+                onChange={handleChange}
+            />
+        </div>
+    );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

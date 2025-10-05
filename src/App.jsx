@@ -1,76 +1,62 @@
 import { useState } from "react";
 import './App.css';
 
-import toDoData from './todo.json'
+import toDoData from './todo.json';
 import { TodoList } from './components/TodoList/TodoList';
 import { TodoEditor } from './components/TodoEditor/TodoEditor';
 import { Info } from './components/Info/Info';
 import { Filter } from './components/Filter/Filter';
 
-const App = ( ) => {
-  // state = {
-  //   todos: toDoData,
-  //   filter: '',
-  // }
+const App = () => {
+  const [todos, setTodos] = useState(toDoData);
+  const [filter, setFilter] = useState("");
 
-  const [todos, useTodos] = useState([])
-  const [filter, useFilter] = useState("")
+  const changeCompleted = (changedElId) => {
+    setTodos(prevTodos =>
+      prevTodos.map(task =>
+        task.id === changedElId ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
 
-  changeCompleted = (changedElId) => {
-    
-    this.setState(prevState => {
-      const updatedTodos = prevState.todos.map(task => {
-        if (task.id === changedElId) {
-          return { ...task, completed: !task.completed };
-        }
-        return task;
-      });
-      return { todos: updatedTodos };
-    });
-  }
+  const deleteTask = (id) => {
+    setTodos(prevTodos => prevTodos.filter(task => task.id !== id));
+  };
 
-
-  deleteTask = (id) => {
-    this.setState(prevState => {
-      const updatedTodos = prevState.todos.filter(task => task.id !== id);
-      return { todos: updatedTodos };
-    });
-  }
-
-  addTask = (task) => {
+  const addTask = (task) => {
     const newTask = {
       text: task,
-      id: `id-${this.state.todos.length + 1}`,
+      id: `id-${todos.length + 1}`,
       completed: false
+    };
+    setTodos(prevTodos => [...prevTodos, newTask]);
+  };
+
+  const filteredTask = (contact) => {
+    setFilter(contact);
+  };
+
+  const filteredTasks = () => {
+    if (!filter.trim()) {
+      return todos;
     }
-    this.setState(prevState => ({
-      todos: [...prevState.todos, newTask]
-    }));
-  }
-
-  filteredTask = (contact) => {
-    this.setState({ filter: contact })
-  }
-
-  filteredTasks = () => {
-    if (!this.state.filter.toLowerCase()) {
-      return this.state.todos;
-    }
-    return this.state.todos.filter(task =>
-      task.text.toLowerCase().includes(this.state.filter.toLowerCase())
+    return todos.filter(task =>
+      task.text.toLowerCase().includes(filter.toLowerCase())
     );
-  }
+  };
 
-  const filteredTasks = this.filteredTasks();
-
-    return (
-      <div className="App">
-        <Info data={this.state.todos} />
-        <TodoEditor addTask={this.addTask} />
-        <Filter filteredTask={this.filteredTask} />
-        <TodoList tasks={filteredTasks} changeComplated={this.changeCompleted} deleteFunk={this.deleteTask} addToStorage={this.addToStorage} />
-      </div>
-    );
-}
+  return (
+    <div className="App">
+      <Info data={todos} />
+      <TodoEditor addTask={addTask} />
+      <Filter filteredTask={filteredTask} />
+      <TodoList 
+        tasks={filteredTasks()} 
+        changeComplated={changeCompleted} 
+        deleteFunk={deleteTask} 
+      />
+    </div>
+  );
+};
 
 export default App;
